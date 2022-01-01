@@ -6,7 +6,7 @@ AFRAME.registerComponent("create-markers", {
     dishes.map(dish=>{
       var marker = document.createElement("a-marker")
       marker.setAttribute("id",dish.id)
-      marker.setAttribute("type",pattern)
+      marker.setAttribute("type","pattern")
       marker.setAttribute("url",dish.marker_pattern_url);
       marker.setAttribute("cursor",{
        rayOrigin:"mouse" 
@@ -27,10 +27,12 @@ AFRAME.registerComponent("create-markers", {
 
       var model = document.createElement("a-entity")
       model.setAttribute("id",`model-${dish.id}`)
-      model.setAttribute("position",dish.model.geometry.position)
-      model.setAttribute("rotation",dish.model.geometry.rotation)
-      model.setAttribute("scale",dish.model.geometry.scale)
-      model.setAttribute("gltf-model",`url{${dish.model_url}}`)
+      model.setAttribute("position",dish.model_geometry.position)
+      model.setAttribute("rotation",dish.model_geometry.rotation)
+      model.setAttribute("scale",dish.model_geometry.scale)
+      model.setAttribute("gltf-model",`url(${dish.model_url})`)
+      model.setAttribute("gesture-handler",{})
+      model.setAttribute("visible",false)
 
       marker.appendChild(model)
 
@@ -40,7 +42,8 @@ AFRAME.registerComponent("create-markers", {
       mainPlane.setAttribute("rotation",{x:-90,y:0,z:0})
       mainPlane.setAttribute("width",1.7)
       mainPlane.setAttribute("height",1.5)
-      
+      mainPlane.setAttribute("visible",false)
+
       marker.appendChild(mainPlane)
     
       var titlePlane = document.createElement("a-plane")
@@ -56,15 +59,15 @@ AFRAME.registerComponent("create-markers", {
       dishTitle.setAttribute("id",`dish-title-${dish.id}`)
       dishTitle.setAttribute("position",{x:0,y:0,z:0.1})
       dishTitle.setAttribute("rotation",{x:0,y:0,z:0})
-      dishTitle.setAttributeNode("text",{
-        font:"monid",
+      dishTitle.setAttribute("text",{
+        font:"monoid",
         color:"black",
-        width:1.2,
+        width:1.8,
         height:1,
         align:"center",
         value:dish.dish_name.toUpperCase()
       })
-     titlePlane.setAttribute(dishTitle) 
+     titlePlane.appendChild(dishTitle) 
 
      var ingredients= document.createElement("a-entity")
      ingredients.setAttribute("id",`ingredients-${dish.id}`)
@@ -95,7 +98,7 @@ AFRAME.registerComponent("create-markers", {
      price.setAttribute("position",{x:0.03,y:0.05,x:0.1})
      price.setAttribute("rotation",{x:0,y:0,z:0})
      price.setAttribute("text",{
-       font:"mozillabr",
+       font:"mozillavr",
        color:"white",
        width:3,
        align:"center",

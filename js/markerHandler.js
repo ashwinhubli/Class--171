@@ -27,7 +27,7 @@ AFRAME.registerComponent("markerhandler", {
       icon:iconUrl,
       content:{
         element:"input",
-        attribute:{
+        attributes:{
           placeholder:"type your table number",
           type:"number",
           min:1
