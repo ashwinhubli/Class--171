@@ -67,7 +67,8 @@ AFRAME.registerComponent("markerhandler", {
 
     var ratingButton = document.getElementById("rating-button");
     var orderButtton = document.getElementById("order-button");
-
+    var orderSummaryButton = document.getElementById("order-summary-button")
+    orderSummaryButton.addEventListener("click",()=>this.handleOrderSummary())
     // Handling Click Events
     ratingButton.addEventListener("click", function () {
       swal({
@@ -108,5 +109,12 @@ AFRAME.registerComponent("markerhandler", {
       .then(snap => {
         return snap.docs.map(doc => doc.data());
       });
+  },
+  handleOrderSummary:async function(){
+    var tnumber;
+    tnumber<9 ?(tnumber=`T0${tnumber}`):`T${tnumber}`
+
+    var orderSummary = await this.getOrderSummary(tnumber)
+
   }
 });

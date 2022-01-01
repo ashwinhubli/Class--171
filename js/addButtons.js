@@ -12,9 +12,16 @@ AFRAME.registerComponent("create-buttons", {
     button2.setAttribute("id", "order-button");
     button2.setAttribute("class", "btn btn-warning mr-4");
 
+
+  
+    var button3 = document.createElement("button");
+    button3.innerHTML = "ORDER SUMMARY"
+    button3.setAttribute("id", "order-summary-button")
+    button3.setAttribute("class","btn btn-warning ml-3")
     // 2. Append somewhere
     var buttonDiv = document.getElementById("button-div");
     buttonDiv.appendChild(button1);
     buttonDiv.appendChild(button2);
+    buttonDiv.appendChild(button3);
   }
 });
